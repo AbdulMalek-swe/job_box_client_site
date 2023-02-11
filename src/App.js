@@ -4,7 +4,7 @@ import { RouterProvider } from "react-router";
  
 import routes from "./routes/routes";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { setUser } from "./features/auth/authSlice";
+import { setUser, toggleLoading } from "./features/auth/authSlice";
 
 function App() {
   const auth = getAuth();
@@ -13,9 +13,10 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const email = user.email ;
+        console.log(email)
          dispatch(setUser(email))
       } else {
-
+         dispatch(toggleLoading())
       }
     });
   }, [])

@@ -51,9 +51,10 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
   
-   { !state?.auth?.email ? <Link to="/user/login">login</Link>:
-       <button type="button" class="px-2 py-1 text-xs font-medium text-center    rounded-full border border-gray-800 dark:hover:bg-black-600 "  onClick={userSignOut}>Log out</button>
+   { !state?.auth?.email ? <Link to="/user/login">  <button type="button" class="px-2 py-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Sign in</button></Link>:
+       <button type="button" class="px-2 py-1 text-xs font-medium text-center    rounded-full border border-gray-800  hover:bg-slate-200 "  onClick={userSignOut}>Log out</button>
    }
+    <Link to="/register">  <button type="button" class="px-2 py-1 mx-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Get Start</button></Link>
   </div>
 </div>
 </div>
