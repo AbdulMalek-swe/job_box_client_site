@@ -1,20 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {  getAuth, signOut } from "firebase/auth";
-import { logout } from '../../features/auth/authSlice';
+// import {  getAuth, signOut } from "firebase/auth";
+// import { logout } from '../../features/auth/authSlice';
 
 const Navbar = () => {
-    const state = useSelector(state=>state)
-    const dispatch = useDispatch()
-    const auth = getAuth()
+  //   const state = useSelector(state=>state)
+  //   const dispatch = useDispatch()
+  //   const auth = getAuth()
    const userSignOut = () =>{
-    signOut(auth).then(() => {
-        console.log("successfully");
-        dispatch(logout())
-      }).catch((error) => {
-         console.log(error.message)
-      });
+  //   signOut(auth).then(() => {
+  //       console.log("successfully");
+  //       dispatch(logout())
+  //     }).catch((error) => {
+  //        console.log(error.message)
+  //     });
    }
     
     return (
@@ -50,11 +50,11 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-  
-   { !state?.auth?.email ? <Link to="/user/login">  <button type="button" class="px-2 py-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Sign in</button></Link>:
-       <button type="button" class="px-2 py-1 text-xs font-medium text-center    rounded-full border border-gray-800  hover:bg-slate-200 "  onClick={userSignOut}>Log out</button>
-   }
-    <Link to="/register">  <button type="button" class="px-2 py-1 mx-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Get Start</button></Link>
+{/*   
+   { !state?.auth?.email ? <Link to="/user/login">  <button type="button" className="px-2 py-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Sign in</button></Link>:
+       <button type="button" className="px-2 py-1 text-xs font-medium text-center    rounded-full border border-gray-800  hover:bg-slate-200 "  onClick={userSignOut}>Log out</button>
+   } */}
+    <Link to="/register">  <button type="button" className="px-2 py-1 mx-1 text-xs font-medium text-center rounded-full border border-gray-800  hover:bg-slate-200 ">Get Start</button></Link>
   </div>
 </div>
 </div>
