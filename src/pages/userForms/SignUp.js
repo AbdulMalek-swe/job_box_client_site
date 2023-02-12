@@ -5,11 +5,13 @@ import { useForm, useWatch } from 'react-hook-form';
 import signImage from '../../assets/login.svg'
 import { useNavigate } from 'react-router';
 import { FcGoogle } from 'react-icons/fc';
+import { googleLogin, signUp } from '../../features/auth/authSlice';
+import { useDispatch } from 'react-redux';
 const SignUp = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, control, reset } = useForm()
     let [disabled, setDisabled] = useState(true);
-    
+    const dispatch = useDispatch()
     const email = useWatch({ control, name: "email" });
     const password = useWatch({ control, name: "password" });
     const confirmPassword = useWatch({ control, name: "confirmPassword" });
@@ -23,6 +25,9 @@ const SignUp = () => {
         }
     }, [password, confirmPassword,email])
     const onSubmit = (data) => {
+        // console.log(data);
+        // signUp(data);
+        dispatch(signUp(data))
         
     }
     let inputClass = "block px-2.5 pb-2.5 pt-5 w-full text-md text-black     border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer";
@@ -81,13 +86,13 @@ const SignUp = () => {
                                    have an account?{" "}
                                     <span
                                         className='text-primary hover:underline cursor-pointer'
-                                       
+                                        onClick={() => navigate("/user/login")}
                                     >
                                         Sign in
                                     </span>
                                 </p>
                             </div>
-                            <div className='flex mt-3'><div className=' mx-auto'><button className="px-3 py-3   rounded-full border border-gray-800  hover:bg-slate-200 ">   <FcGoogle /></button></div></div>
+                            <div className='flex mt-3'><div className=' mx-auto'><button className="px-3 py-3   rounded-full border border-gray-800  hover:bg-slate-200 " onClick={()=>dispatch(googleLogin())}>   <FcGoogle /></button></div></div>
                             </form>
                         </div>
                     </div>
