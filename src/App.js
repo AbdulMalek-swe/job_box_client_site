@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router";
 import routes from "./routes/routes";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {   setUser, toggleLoading} from "./features/auth/authSlice";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -23,24 +24,25 @@ function App() {
       }
     });
   }, [])
-  useEffect(() => {
-    // dispatch(toggleLoading())
+  // useEffect(() => {
+  //   // dispatch(toggleLoading())
     
-      fetch('http://localhost:5000/me',{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then(res=>res.json())
-      .then(data=>{
+  //     fetch('http://localhost:5000/me',{
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   })
+  //     .then(res=>res.json())
+  //     .then(data=>{
        
-        const {email} = data.user;
-        dispatch(setUser(email))
-      })
+  //       const {email} = data.user;
+  //       dispatch(setUser(email))
+  //     })
         
-  }, [token])
+  // }, [token])
   return (
     <div>
+      <Toaster/>
         <RouterProvider router={routes} />
     </div>
   );
