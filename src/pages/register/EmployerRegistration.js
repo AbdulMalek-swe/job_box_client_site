@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
+import { useRegisterMutation } from "../../features/auth/authApi";
+import { useSelector } from "react-redux";
  
 const EmployerRegistration = () => {
     const [countries, setCountries] = useState([]);
-
+    const [postUser,{}] = useRegisterMutation();
+    const {auth,api} = useSelector(state=>state)
+    console.log(auth);
   const { handleSubmit, register, control } = useForm();
   const term = useWatch({ control, name: "term" });
   const navigate = useNavigate();
@@ -40,8 +44,8 @@ const EmployerRegistration = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
-     
+     console.log(data);
+    postUser({...data,email:auth?.email,role:"employer"})
   };
 
     return (
@@ -71,12 +75,7 @@ const EmployerRegistration = () => {
               </label>
               <input type='text' id='lastName' {...register("lastName")} />
             </div>
-            <div className='flex flex-col w-full max-w-xs'>
-              <label className='mb-2' htmlFor='email'>
-                Email
-              </label>
-              <input type='email' id='email' disabled {...register("email")} />
-            </div>
+            
             <div className='flex flex-col w-full max-w-xs'>
               <h1 className='mb-3'>Gender</h1>
               <div className='flex gap-3'>
@@ -157,7 +156,7 @@ const EmployerRegistration = () => {
                 id='roleInCompany'
               />
             </div>
-  
+             {/* TERM IS ADDED  */}
             <div className='flex justify-between items-center w-full mt-3'>
               <div className='flex  w-full max-w-xs'>
                 <input
