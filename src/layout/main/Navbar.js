@@ -9,6 +9,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const auth = getAuth()
    const userSignOut = () =>{
+    localStorage.removeItem("token")
     signOut(auth).then(() => {
         console.log("successfully");
         dispatch(logout())
